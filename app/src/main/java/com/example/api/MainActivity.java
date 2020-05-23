@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     ListView  lvData;
     EditText edtSearch;
 
-    ProgressBar progressBar;
+
     List<Data> dataListSon;
     List<Data> dataListParents;
     ApiAdapter apiAdapter ;
@@ -47,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     View dataView;
     boolean isLoading = false;
-    boolean limitData = false;
     androidx.appcompat.widget.SearchView searchView;
-    AsyncTaskWait asyncTaskWait;
 
 
 
@@ -106,9 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //khởi tạo loadmoreListView
-
     }
 
     private void setListcron(){
@@ -127,38 +122,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-    private class AsyncTaskWait extends AsyncTask <Void, Void, Void>{
-
-        private WeakReference<Context> context;
-        public AsyncTaskWait(WeakReference<Context> context){
-            this.context = context;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-        @Override
-        protected void onPostExecute(Void nothing){
-            Intent intent = new Intent("result");
-            LocalBroadcastManager.getInstance(context.get().getApplicationContext()).sendBroadcast
-                    (intent);
-        }
-    }
-
-
-
-
-
-
-
     public void getData(){
         dataListParents = new ArrayList<>();
         AndroidNetworking.get("http://www.json-generator.com/api/json/get/cfQPOdYijS?indent=2")
