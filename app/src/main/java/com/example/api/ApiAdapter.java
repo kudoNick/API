@@ -34,6 +34,10 @@ private Filter filter;
         this.dataList = dataList;
         this.getDataList = dataList;
     }
+    public void addListItemAdapter (ArrayList<Data> dataPlus){
+        dataList.addAll(dataPlus);
+        this.notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
